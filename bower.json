@@ -1,0 +1,17 @@
+{
+  "name": "restaurant",
+  "description": "Restaurant example with AngularJS",
+  "main": "",
+  "authors": [
+    "Klavs Sprugevics"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
