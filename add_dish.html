@@ -11,19 +11,59 @@
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="DishController">
+      <form novalidate name="form">
+        <div class="row justify-content-center">
+            <div class="form-group text-center lead w-25">
+                <label class="display-4">Nosaukums</label>
+                <input name="nosaukums" type="text" class="form-control lead text-center" ng-model="newDish.name" maxlength=50 required>
+                <br/>
+                <div ng-show="form.$submitted || form.nosaukums.$touched">
+                  <span class="alert alert-danger" ng-show="form.nosaukums.$error.required">Nosaukums nevar būt tukšs!</span>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="form-group text-center lead w-25">
+            <label class="display-4">Apraksts</label>
+            <textarea name="apraksts" class="form-control lead" rows="4" style="resize:none;" ng-model="newDish.description" required></textarea>
+            <br/>
+            <div ng-show="form.$submitted || form.apraksts.$touched">
+              <span class="alert alert-danger" ng-show="form.apraksts.$error.required">Apraksts nevar būt tukšs!</span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group text-center lead px-2">
+              <label class="display-4">Cena</label>
+              <input name="cena" type="text" class="form-control lead text-center" ng-model="newDish.price" ng-pattern="/^[0-9]+\.[0-9]{2}$/" required>
+              <div class="mt-4" ng-show="form.cena.$touched && form.cena.$invalid || form.$submitted">
+                <span class="alert alert-danger" ng-show="form.cena.$invalid">Cena jāievada formā: eiro.centi</span>
+              </div>
+            </div>
+            <div class="form-group text-center lead px-2">
+              <label class="display-4">Attēls</label>
+              <input type="text" class="form-control lead text-center" ng-model="newDish.image">
+            </div>
+            <div class="form-group text-center lead m-4 px-4">
+              <label class="form-check-label row">
+                <input class="form-check-input" type="checkbox" ng-model="specials">
+                Īpašais piedāvājums
+              </label>
+              <label class="form-check-label row">
+                <input class="form-check-input" type="checkbox" ng-model="vegetarian">
+                Veģetārs
+              </label>
+              <label class="form-check-label row">
+                <input class="form-check-input" type="checkbox" ng-model="vegan">
+                Vegānisks
+              </label>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block lead m-4" ng-click="checkInfo()" value="Nosūtīt" ng-disabled="form.$invalid"/>
+      </form>
+
       <div class="row" ng-controller="MenuController">
-        <!-- <div class="col-md-2" >
-          <nav class="navbar navbar-light" id="scrollSpy" style="position:fixed;" data-spy="affix" data-offset-top="200">
-            <nav class="nav nav-pills nav-stacked flex-column bg-light">
-              <p class="navbar-brand lead text-center font-italic" href="#">Ēdienkarte</p>
-              <hr id="menuline"/>
-              <a class="nav-link lead" href="#specials">Īpašie piedāvājumi</a>
-              <a class="nav-link lead" href="#vegetarian">Veģetārie ēdieni</a>
-              <a class="nav-link lead" href="#vegan">Vegāniskie ēdieni</a>
-            </nav>
-          </nav> 
-        </div> -->
         <div class="col-md-8">
           <form class="col-auto card card-sm">
             <div class="card-body row align-items-center">

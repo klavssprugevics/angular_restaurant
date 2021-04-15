@@ -42,3 +42,36 @@ angular.module('restaurantApp',[])
         $scope.dishes = orderBy(dishes, 'price', (($scope.selectedOrder == '1') ? false : true));
     };
 }])
+.controller('DishController', ['$scope', function($scope)
+{
+    $scope.newDish = {name:'', description:'', image:'', category:[], price:''};
+    $scope.checkInfo = function()
+    {
+        console.log("New dish info:");
+        console.log($scope.newDish.name);
+        console.log($scope.newDish.description);
+        console.log($scope.newDish.image);
+        console.log($scope.newDish.category);
+        console.log($scope.newDish.price);
+        $scope.combineCategories();
+    };
+
+    // No checkbox izveido kategoriju sarakstu
+    $scope.combineCategories = function()
+    {
+        category = [];
+        if($scope.vegan)
+        {
+            category.push('vegan');
+        }
+        if($scope.vegetarian)
+        {
+            category.push('vegetarian');
+        }
+        if($scope.specials)
+        {
+            category.push('specials');
+        }
+        $scope.newDish.category = category;
+    };
+}])
