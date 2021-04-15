@@ -24,7 +24,7 @@
           </nav> 
         </div> -->
         <div class="col-md-8">
-          <form class="card card-sm">
+          <form class="col-auto card card-sm">
             <div class="card-body row align-items-center">
               <div class="col-auto">
                   <i class="fas fa-search h4 text-body"></i>
@@ -32,17 +32,26 @@
               <div class="col-auto">
                   <input class="form-control form-control-lg form-control-borderless" type="text" placeholder="Nosaukums" ng-model="keyword">
               </div>
-              <button class ="btn mx-3" type="button" ng-click="clicked1 = !clicked1; addTag('specials')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked1]"/>Specials</button>
-              <button class ="btn mx-3" type="button" ng-click="clicked2 = !clicked2; addTag('vegetarian')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked2]"/>Vegetarian</button>
-              <button class ="btn mx-3" type="button" ng-click="clicked3 = !clicked3; addTag('vegan')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked3]"/>Vegan</button>
+              <div class="col-auto">
+                <button class ="btn mx-3" type="button" ng-click="clicked1 = !clicked1; addTag('specials')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked1]"/>Īpašie piedāvājumi</button>
+                <button class ="btn mx-3" type="button" ng-click="clicked2 = !clicked2; addTag('vegetarian')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked2]"/>Veģetārs</button>
+                <button class ="btn mx-3" type="button" ng-click="clicked3 = !clicked3; addTag('vegan')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked3]"/>Vegānisks</button>
+              </div>
+              <div class="col-auto">
+                <select class="custom-select" ng-model="selectedOrder" ng-change="orderBy()">
+                  <option value="" disabled selected hidden>Kārtošana</option>
+                  <option value="1">Cena, augoša</option>
+                  <option value="-1">Cena, dilstoša</option>
+                </select>
+              </div>
             </div>
           </form>
         </div>
         <div class="col-md-8">
           <div>
             <div class="p-4">
-              <h2 id="specials" class="display-4">Mūsu ēdieni</h2>
-              <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()"> <!--Atlasa masivu pec name, kas sakrit ar keyword-->
+              <h2 id="specials" class="display-4">Piedāvājums:</h2>
+              <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()">
                 <div class="col-xs-3 mr-4">
                   <img class="rounded" src={{food.image}} style="width:225px;">
                 </div>

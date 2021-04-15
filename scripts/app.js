@@ -1,5 +1,5 @@
 angular.module('restaurantApp',[])
-.controller('MenuController', ['$scope', function($scope)
+.controller('MenuController', ['$scope', 'orderByFilter', function($scope, orderBy)
 {
     var dishes = 
     [
@@ -36,4 +36,9 @@ angular.module('restaurantApp',[])
         };
     };
 
+    // sakarto masivu pec cenas
+    $scope.orderBy = function()
+    {
+        $scope.dishes = orderBy(dishes, 'price', (($scope.selectedOrder == '1') ? false : true));
+    };
 }])
