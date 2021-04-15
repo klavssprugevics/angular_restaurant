@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restaurant Ābols</title>
+    <title>Restorāns "Ābols"</title>
     <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row" ng-controller="MenuController as menuCtrl">
+      <div class="row" ng-controller="MenuController">
         <!-- <div class="col-md-2" >
           <nav class="navbar navbar-light" id="scrollSpy" style="position:fixed;" data-spy="affix" data-offset-top="200">
             <nav class="nav nav-pills nav-stacked flex-column bg-light">
@@ -24,10 +24,25 @@
           </nav> 
         </div> -->
         <div class="col-md-8">
+          <form class="card card-sm">
+            <div class="card-body row align-items-center">
+              <div class="col-auto">
+                  <i class="fas fa-search h4 text-body"></i>
+              </div>
+              <div class="col-auto">
+                  <input class="form-control form-control-lg form-control-borderless" type="text" placeholder="Nosaukums" ng-model="keyword">
+              </div>
+              <button class ="btn mx-3" type="button" ng-click="clicked1 = !clicked1; addTag('specials')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked1]"/>Specials</button>
+              <button class ="btn mx-3" type="button" ng-click="clicked2 = !clicked2; addTag('vegetarian')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked2]"/>Vegetarian</button>
+              <button class ="btn mx-3" type="button" ng-click="clicked3 = !clicked3; addTag('vegan')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked3]"/>Vegan</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8">
           <div>
             <div class="p-4">
-              <h2 id="specials" class="display-4">Īpašie piedāvājumi</h2>
-              <div class="row p-4" ng-repeat="food in menuCtrl.dishes">
+              <h2 id="specials" class="display-4">Mūsu ēdieni</h2>
+              <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()"> <!--Atlasa masivu pec name, kas sakrit ar keyword-->
                 <div class="col-xs-3 mr-4">
                   <img class="rounded" src={{food.image}} style="width:225px;">
                 </div>
@@ -39,7 +54,7 @@
                 </div>
               </div>
             </div>
-          <hr>
+            <hr>
           </div>
         </div>
       </div>
