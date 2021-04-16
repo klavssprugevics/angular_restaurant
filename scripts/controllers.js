@@ -44,20 +44,18 @@ angular.module('restaurantApp')
 {
     // nodrosina jaunu dish pievienosanu
     $scope.dishes = sharedDishes.getDishes();
-    $scope.newDish = {name:'', description:'', image:'', category:[], price:''};
+    $scope.newDish = {name:'', image:'', category:[], price:'', description:''};
     
     $scope.checkInfo = function()
     {
         $scope.combineCategories();
         currImage = $scope.newDish.image;
+
         if(currImage === "")
         {
             $scope.newDish.image = 'images/apple.png';
         }
-        else
-        {
-            $scope.newDish.image = 'images/' + currImage;
-        }
+
         $scope.dishes.push($scope.newDish)
         sharedDishes.setDishes($scope.dishes);
 

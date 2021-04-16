@@ -1,0 +1,46 @@
+<div class="container-fluid m-3">
+  <div class="row" ng-controller="MenuController">
+    <div class="col-md-8 mx-auto mt-3">
+      <form class="col-auto card card-sm">
+        <div class="card-body row align-items-center">
+          <div class="col-auto">
+              <i class="fas fa-search h4 text-body"></i>
+          </div>
+          <div class="col-auto">
+              <input class="form-control form-control-lg form-control-borderless" type="text" placeholder="Nosaukums" ng-model="keyword">
+          </div>
+          <div class="col-auto">
+            <button class ="btn mx-3" type="button" ng-click="clicked1 = !clicked1; addTag('specials')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked1]"/>Īpašie piedāvājumi</button>
+            <button class ="btn mx-3" type="button" ng-click="clicked2 = !clicked2; addTag('vegetarian')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked2]"/>Veģetārs</button>
+            <button class ="btn mx-3" type="button" ng-click="clicked3 = !clicked3; addTag('vegan')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked3]"/>Vegānisks</button>
+          </div>
+          <div class="col-auto">
+            <select class="custom-select" ng-model="selectedOrder" ng-change="orderBy()">
+              <option value="" disabled selected hidden>Kārtošana</option>
+              <option value="1">Cena, augoša</option>
+              <option value="-1">Cena, dilstoša</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xl-12">
+      <div>
+        <div class="container-fluid p-4">
+          <h2 id="specials" class="display-4">Piedāvājums:</h2>
+          <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()">
+            <div class="col-xs-3 mr-4">
+              <img class="rounded" src={{food.image}} style="width:225px;">
+            </div>
+            <div class="col-md-9">
+              <h3>{{food.name}}</h3>
+              <hr/>
+              <p>{{food.description}}</p>
+              <p class="lead text-right">{{food.price}} <span class="fas fa-euro-sign"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

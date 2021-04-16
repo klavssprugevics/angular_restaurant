@@ -1,79 +1,22 @@
-<!-- Klavs Sprugevics, 15.04.2021. -->
 <!DOCTYPE html>
 <html lang="en" ng-app="restaurantApp">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Restorāns "Ābols"</title>
     <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/controllers.js"></script>
+    <script src="./scripts/services.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row" ng-controller="MenuController">
-        <!-- <div class="col-md-2" >
-          <nav class="navbar navbar-light" id="scrollSpy" style="position:fixed;" data-spy="affix" data-offset-top="200">
-            <nav class="nav nav-pills nav-stacked flex-column bg-light">
-              <p class="navbar-brand lead text-center font-italic" href="#">Ēdienkarte</p>
-              <hr id="menuline"/>
-              <a class="nav-link lead" href="#specials">Īpašie piedāvājumi</a>
-              <a class="nav-link lead" href="#vegetarian">Veģetārie ēdieni</a>
-              <a class="nav-link lead" href="#vegan">Vegāniskie ēdieni</a>
-            </nav>
-          </nav> 
-        </div> -->
-        <div class="col-md-8">
-          <form class="col-auto card card-sm">
-            <div class="card-body row align-items-center">
-              <div class="col-auto">
-                  <i class="fas fa-search h4 text-body"></i>
-              </div>
-              <div class="col-auto">
-                  <input class="form-control form-control-lg form-control-borderless" type="text" placeholder="Nosaukums" ng-model="keyword">
-              </div>
-              <div class="col-auto">
-                <button class ="btn mx-3" type="button" ng-click="clicked1 = !clicked1; addTag('specials')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked1]"/>Īpašie piedāvājumi</button>
-                <button class ="btn mx-3" type="button" ng-click="clicked2 = !clicked2; addTag('vegetarian')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked2]"/>Veģetārs</button>
-                <button class ="btn mx-3" type="button" ng-click="clicked3 = !clicked3; addTag('vegan')" ng-class="{true : 'btn-light', false : 'btn-info'}[!clicked3]"/>Vegānisks</button>
-              </div>
-              <div class="col-auto">
-                <select class="custom-select" ng-model="selectedOrder" ng-change="orderBy()">
-                  <option value="" disabled selected hidden>Kārtošana</option>
-                  <option value="1">Cena, augoša</option>
-                  <option value="-1">Cena, dilstoša</option>
-                </select>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-8">
-          <div>
-            <div class="p-4">
-              <h2 id="specials" class="display-4">Piedāvājums:</h2>
-              <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()">
-                <div class="col-xs-3 mr-4">
-                  <img class="rounded" src={{food.image}} style="width:225px;">
-                </div>
-                <div class="col-md-9">
-                  <h3>{{food.name}}</h3>
-                  <hr/>
-                  <p>{{food.description}}</p>
-                  <p class="lead text-right">{{food.price}} <span class="fas fa-euro-sign"></span></p>
-                </div>
-              </div>
-            </div>
-            <hr>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <script src="./bower_components/angular/angular.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers.js"></script>
-    <script src="scripts/services.js"></script>
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
+    <div ui-view="footer"></div>
   </body>
 </html>

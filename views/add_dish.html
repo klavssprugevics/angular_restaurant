@@ -1,0 +1,56 @@
+<div class="container-fluid" ng-controller="DishController">
+  <form novalidate name="form">
+	<h2 id="specials" class="display-4 row justify-content-center m-2">Pievienot ēdienu:</h2>
+	<div class="row justify-content-center">
+	  <div class="form-group text-center lead w-25">
+      <hr/>
+		  <label class="display-4">Nosaukums</label>
+		  <input name="nosaukums" type="text" class="form-control lead text-center" ng-model="newDish.name" maxlength=50 required>
+		  <br/>
+		  <div ng-show="form.$submitted || form.nosaukums.$touched">
+			<span class="alert alert-danger" ng-show="form.nosaukums.$error.required">Nosaukums nevar būt tukšs!</span>
+		  </div>
+	  </div>
+	</div>
+	<div class="row justify-content-center">
+	  <div class="form-group text-center lead w-25">
+		<label class="display-4">Apraksts</label>
+		<textarea name="apraksts" class="form-control lead" rows="4" style="resize:none;" ng-model="newDish.description" required></textarea>
+		<br/>
+		<div ng-show="form.$submitted || form.apraksts.$touched">
+		  <span class="alert alert-danger" ng-show="form.apraksts.$error.required">Apraksts nevar būt tukšs!</span>
+		</div>
+	  </div>
+	</div>
+	<div class="row justify-content-center">
+	  <div class="form-group text-center lead px-2">
+		<label class="display-4">Cena</label>
+		<input name="cena" type="text" class="form-control lead text-center" ng-model="newDish.price" ng-pattern="/^[0-9]+\.[0-9]{2}$/" required>
+		<div class="mt-4" ng-show="form.cena.$touched && form.cena.$invalid || form.$submitted">
+		  <span class="alert alert-danger" ng-show="form.cena.$invalid">Cena jāievada formā: eiro.centi</span>
+		</div>
+	  </div>
+	  <div class="form-group text-center lead px-2">
+		<label class="display-4">Attēls</label>
+		<input type="text" class="form-control lead text-center" ng-model="newDish.image">
+	  </div>
+	  <div class="form-group text-center lead m-4 px-4">
+		<label class="form-check-label row">
+		  <input class="form-check-input" type="checkbox" ng-model="specials">
+		  Īpašais piedāvājums
+		</label>
+		<label class="form-check-label row">
+		  <input class="form-check-input" type="checkbox" ng-model="vegetarian">
+		  Veģetārs
+		</label>
+		<label class="form-check-label row">
+		  <input class="form-check-input" type="checkbox" ng-model="vegan">
+		  Vegānisks
+		</label>
+	  </div>
+	</div>
+	<div class="text-center lead">
+	  <input type="submit" class="btn btn-primary lead m-4 px-4 py-2 w-50" ng-click="checkInfo()" value="Pievienot" ui-sref="app.edienkarte" ng-disabled="form.$invalid"/>
+	</div>
+  </form>
+</div>
