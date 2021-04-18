@@ -15,11 +15,23 @@ angular.module('restaurantApp', ['ui.router', 'ngResource'])
         'content@' : {templateUrl : './views/edienkarte.html', controller : 'MenuController'},
         'footer' :{templateUrl : './views/footer.html'}
     }})
-	.state('app.pievienot', {url:'pievienot', views:
+	   .state('app.pievienot', {url:'pievienot', views:
     {
         'header' : {templateUrl : './views/header.html'},
         'content@' : {templateUrl : './views/add_dish.html', controller : 'DishController'},
         'footer' :{templateUrl : './views/footer.html'}
-    }})   
+    }})
+ 	  .state('app.kontakti', {url:'kontakti', views:
+    {
+        'header' : {templateUrl : './views/header.html'},
+        'content@' : {templateUrl : './views/contacts.html'},
+        'footer' :{templateUrl : './views/footer.html'}
+    }})
+  	 .state('app.vakances', {url:'vakances', views:
+    {
+        'header' : {templateUrl : './views/header.html'},
+        'content@' : {templateUrl : './views/jobs.html'},
+        'footer' :{templateUrl : './views/footer.html'}
+    }})
     $urlRouterProvider.otherwise('/');
 }])
