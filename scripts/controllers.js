@@ -50,7 +50,7 @@ angular.module('restaurantApp')
 .controller('DishController', ['$scope',  'sharedDishes', function($scope, sharedDishes)
 {
     // nodrosina jaunu dish pievienosanu
-    $scope.newDish = {name:'', image:'', category:[], price:'', description:''};
+    $scope.newDish = {name:'', image:'', category:[], price:0.00, description:''};
     $scope.checkInfo = function()
     {
         $scope.combineCategories();
@@ -62,13 +62,6 @@ angular.module('restaurantApp')
         }
 
         sharedDishes.getDishes().save($scope.newDish);
-     
-//        console.log("New dish info:");
-//        console.log($scope.newDish.name);
-//        console.log($scope.newDish.description);
-//        console.log($scope.newDish.image);
-//        console.log($scope.newDish.category);
-//        console.log($scope.newDish.price);
     };
 
     // No checkbox izveido kategoriju sarakstu
@@ -89,4 +82,22 @@ angular.module('restaurantApp')
         }
         $scope.newDish.category = category;
     };
+}])
+.controller('DishSpotlightController', ['$scope', 'sharedDishes', function($scope, sharedDishes)
+{
+    $scope.showMenu = false;
+    $scope.message = "Uzgaidiet..."
+ 
+    // iegust datus no JSON server
+    sharedDishes.getDishes().query(
+    function(resp){
+        $scope.showMenu = true;
+        $scope.dishes = resp;
+        // Samaisa masiivu
+        var shuffled = $scope.dishes.sort(() => 0.5 - Math.random());
+        $scope.selectedDishes = shuffled.slice(0, 3);
+    },
+        function(resp){
+        $scope.message = "Kļūda: " + resp.status + " " + resp.statusText;
+    });
 }]);

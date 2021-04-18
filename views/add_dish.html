@@ -25,7 +25,7 @@
 	<div class="row justify-content-center">
 	  <div class="form-group text-center lead px-2">
 		<label class="display-4">Cena</label>
-		<input name="cena" type="text" class="form-control lead text-center" ng-model="newDish.price" ng-pattern="/^[0-9]+\.[0-9]{2}$/" required>
+		<input name="cena" type="number" class="form-control lead text-center" ng-model="newDish.price" ng-pattern="/^[0-9]+\.[0-9]{2}$/" required>
 		<div class="mt-4" ng-show="form.cena.$touched && form.cena.$invalid || form.$submitted">
 		  <span class="alert alert-danger" ng-show="form.cena.$invalid">Cena jāievada formā: eiro.centi</span>
 		</div>

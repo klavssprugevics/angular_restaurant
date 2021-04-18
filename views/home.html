@@ -1,4 +1,4 @@
-<div id="mansCarousel" class="carousel slide" data-ride="carousel">
+<div id="mansCarousel" ng-if="!showMenu" class="carousel slide" data-ride="carousel" ng-controller="DishSpotlightController">
     <ol class="carousel-indicators">
         <li data-target="#restaurantCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#restaurantCarousel" data-slide-to="1"></li>
@@ -27,7 +27,6 @@
             </div>
         </div>
     </div>
-
     <a class="carousel-control-prev" href="#mansCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -37,7 +36,33 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-
+<div id="mansCarousel" ng-if="showMenu" class="carousel slide" data-ride="carousel" ng-controller="DishSpotlightController">
+    <ol class="carousel-indicators">
+        <li data-target="#restaurantCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#restaurantCarousel" data-slide-to="1"></li>
+        <li data-target="#restaurantCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item" ng-class="{active:!$index}" ng-repeat="food in selectedDishes">
+            <img src={{food.image}} style="height: 800px; width: 100%">
+            <div class="carousel-caption d-none d-md-block">
+                <div class="jumbotron m-2 pt-3 pb-3" style="color:black; background:rgba(245,243,240,0.68);">
+                    <h5>{{food.name}}</h5>
+                    <p>{{food.description}}</p>
+                    <p class="lead">{{food.price}} <span class="fas fa-euro-sign"></span></p>
+                </div>
+            </div>
+        </div>     
+        <a class="carousel-control-prev" href="#mansCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#mansCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="jumbotron m-5 pt-5 pb-3">
 

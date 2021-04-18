@@ -6,7 +6,7 @@ angular.module('restaurantApp', ['ui.router', 'ngResource'])
     .state('app', {url:'/', views:
     {
         'header' : {templateUrl : './views/header.html'},
-        'content' : {templateUrl : './views/home.html'},
+        'content@' : {templateUrl : './views/home.html', controller : 'DishSpotlightController'},
         'footer' :{templateUrl : './views/footer.html'}
     }})
     .state('app.edienkarte', {url:'edienkarte', views:
