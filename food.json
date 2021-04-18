@@ -51,6 +51,14 @@
       "price": 10.22,
       "description": "Garšīga pica",
       "id": 5
+    },
+    {
+      "name": "Zivju pirkstiņi",
+      "image": "https://forktospoon.com/wp-content/uploads/2019/08/Save-10-Off-3-Household-Supplies-on-Amazon-_-Gain-Tide-More-2020-04-07T203724.077.png",
+      "category": [],
+      "price": 3.11,
+      "description": "Mājās gatavoti zivju pirkstiņi!",
+      "id": 6
     }
   ]
 }

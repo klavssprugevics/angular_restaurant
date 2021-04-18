@@ -13,8 +13,6 @@ angular.module('restaurantApp')
         function(resp){
         $scope.message = "Kļūda: " + resp.status + " " + resp.statusText;
     });
-    
-
 
     $scope.selected_tags = [];
 
@@ -49,6 +47,20 @@ angular.module('restaurantApp')
 }])
 .controller('DishController', ['$scope',  'sharedDishes', function($scope, sharedDishes)
 {
+    // Pārbauda, vai ir savienojums ar serveri:
+    $scope.showMenu = false;
+    $scope.message = "Uzgaidiet..."
+ 
+    // iegust datus no JSON server
+    sharedDishes.getDishes().query(
+    function(resp){
+        $scope.dishes = resp;
+        $scope.showMenu = true;
+    },
+        function(resp){
+        $scope.message = "Nav savienojuma ar serveri: " + resp.status + " " + resp.statusText;
+    });
+
     // nodrosina jaunu dish pievienosanu
     $scope.newDish = {name:'', image:'', category:[], price:0.00, description:''};
     $scope.checkInfo = function()

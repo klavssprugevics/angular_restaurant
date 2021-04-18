@@ -1,7 +1,5 @@
 angular.module('restaurantApp', ['ui.router', 'ngResource'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-
-
     $stateProvider
     .state('app', {url:'/', views:
     {
@@ -12,7 +10,7 @@ angular.module('restaurantApp', ['ui.router', 'ngResource'])
     .state('app.edienkarte', {url:'edienkarte', views:
     {
         'header' : {templateUrl : './views/header.html'},
-        'content@' : {templateUrl : './views/edienkarte.html', controller : 'MenuController'},
+        'content@' : {templateUrl : './views/menu.html', controller : 'MenuController'},
         'footer' :{templateUrl : './views/footer.html'}
     }})
 	   .state('app.pievienot', {url:'pievienot', views:
@@ -34,4 +32,4 @@ angular.module('restaurantApp', ['ui.router', 'ngResource'])
         'footer' :{templateUrl : './views/footer.html'}
     }})
     $urlRouterProvider.otherwise('/');
-}])
+}]);

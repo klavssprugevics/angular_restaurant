@@ -1,6 +1,8 @@
 <div class="container-fluid" ng-controller="DishController">
-  <form novalidate name="form">
-	<h2 id="specials" class="display-4 row justify-content-center m-2">Pievienot ēdienu:</h2>
+ <h2 id="specials" class="display-4 row justify-content-center m-2" ng-if="!showMenu">{{message}}</h2>
+ 
+ <form novalidate name="form" ng-if="showMenu">
+ 	<h2 id="specials" class="display-4 row justify-content-center m-2" >Pievienot ēdienu:</h2>
 	<div class="row justify-content-center">
 	  <div class="form-group text-center lead w-25">
       <hr/>
