@@ -27,7 +27,8 @@
     <div class="col-xl-12">
       <div>
         <div class="container-fluid p-4">
-          <h2 id="specials" class="display-4">Piedāvājums:</h2>
+          <h2 id="specials" ng-if="!showMenu" class="display-4 ">{{message}}</h2>
+          <h2 id="specials" ng-if="showMenu" class="display-4">Piedāvājums:</h2>
           <div class="row p-4" ng-repeat="food in dishes | filter : {'name' : keyword} | filter : checkTags()">
             <div class="col-xs-3 mr-4">
               <img class="rounded" src={{food.image}} style="width:225px;">

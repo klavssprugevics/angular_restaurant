@@ -1,13 +1,20 @@
 angular.module('restaurantApp')
 .controller('MenuController', ['$scope', 'orderByFilter', 'sharedDishes', function($scope, orderBy, sharedDishes)
 {
-    // Pievieno watcher, kas atjauno dish sarakstu, kad tiek pievienots jauns dish.
-    $scope.$watch(sharedDishes.getDishes, function(change)
-    {
-        this.change = change;
-        $scope.dishes = sharedDishes.getDishes();
+    $scope.showMenu = false;
+    $scope.message = "Uzgaidiet..."
+ 
+    // iegust datus no JSON server
+    sharedDishes.getDishes().query(
+    function(resp){
+        $scope.dishes = resp;
+        $scope.showMenu = true;
+    },
+        function(resp){
+        $scope.message = "Kļūda: " + resp.status + " " + resp.statusText;
+    });
+    
 
-    }.bind(this));
 
     $scope.selected_tags = [];
 
@@ -43,9 +50,7 @@ angular.module('restaurantApp')
 .controller('DishController', ['$scope',  'sharedDishes', function($scope, sharedDishes)
 {
     // nodrosina jaunu dish pievienosanu
-    $scope.dishes = sharedDishes.getDishes();
     $scope.newDish = {name:'', image:'', category:[], price:'', description:''};
-    
     $scope.checkInfo = function()
     {
         $scope.combineCategories();
@@ -56,15 +61,14 @@ angular.module('restaurantApp')
             $scope.newDish.image = 'images/apple.png';
         }
 
-        $scope.dishes.push($scope.newDish)
-        sharedDishes.setDishes($scope.dishes);
-
-        console.log("New dish info:");
-        console.log($scope.newDish.name);
-        console.log($scope.newDish.description);
-        console.log($scope.newDish.image);
-        console.log($scope.newDish.category);
-        console.log($scope.newDish.price);
+        sharedDishes.getDishes().save($scope.newDish);
+     
+//        console.log("New dish info:");
+//        console.log($scope.newDish.name);
+//        console.log($scope.newDish.description);
+//        console.log($scope.newDish.image);
+//        console.log($scope.newDish.category);
+//        console.log($scope.newDish.price);
     };
 
     // No checkbox izveido kategoriju sarakstu

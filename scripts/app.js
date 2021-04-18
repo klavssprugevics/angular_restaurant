@@ -1,4 +1,4 @@
-angular.module('restaurantApp', ['ui.router'])
+angular.module('restaurantApp', ['ui.router', 'ngResource'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
 
